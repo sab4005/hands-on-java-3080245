@@ -38,7 +38,47 @@ public class Menu {
   }
 
   private void showMenu(Customer customer, Account account) {
-    
+    int selection = 0;
+    double amount = 0;
+
+    while(selection != 4 && customer.isAuthenticated) {
+      System.out.println("=================");
+      System.out.println("Select one of the options");
+      System.out.println("1: Deposit");
+      System.out.println("2: Withdrawl");
+      System.out.println("3: Check Balance");
+      System.out.println("4: Exit");
+      System.out.println("=================");
+      
+      selection = scanner.nextInt();
+
+      switch(selection){
+        case 1: 
+        System.out.println("How much do you want to depsit");
+        amount = scanner.nextDouble();
+        account.deposit(amount);
+        break;
+        
+        case 2:
+        System.out.println("How much do you want to withdrawl");
+        amount = scanner.nextDouble();
+        account.withdrawl(amount);
+        break;
+
+        case 3:
+        System.out.println("Your balance is: "+ account.getBalance());
+        break;
+
+        case 4: 
+        Authenticator.logout(customer);
+        System.out.println("Thanks for banking with us")
+        break;
+
+        default: 
+        System.out.println("Invalid choice");
+        break;
+      }
+    }
   }
   
 }
