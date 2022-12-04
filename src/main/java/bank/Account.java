@@ -1,5 +1,7 @@
 package bank;
 
+import bank.exceptions.AmountException;
+
 public class Account {
   private int id;
   private String type;
@@ -35,8 +37,14 @@ public class Account {
     this.balance = balance;
   }
 
-  public void deposit(double amount) {
-
+  public void deposit(double amount) throws AmountException {
+    if(amount > 0){
+      double newBalanace = amount+ this.balance;
+      this.setBalance(newBalanace);
+      System.out.println("New balance is: " + this.balance);
+    } else {
+      throw new AmountException("A positive number must be entered");    }
+    
   }
 
   public void withdrawl(double amount) {
